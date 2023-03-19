@@ -13,7 +13,7 @@ slack = Slack()
 
 
 @app.route("/", methods=['POST'])
-def hello():
+def thread_summary():
 
     data = json.loads(request.data)
 
