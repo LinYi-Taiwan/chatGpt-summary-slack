@@ -18,7 +18,12 @@ def thread_summary():
     data = json.loads(request.data)
 
     channel_id = data['event']['channel']
-    thread_id = data['event']['thread_ts']
+
+    if 'thread_ts' not in data['event']:
+        slack.post_message('Not in thread.', channel_id)
+        return
+    else:
+        thread_id = data['event']['thread_ts']
 
     r = slack.get_thread_conversations(
         channel_id=channel_id,

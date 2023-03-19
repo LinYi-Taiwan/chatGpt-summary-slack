@@ -19,7 +19,7 @@ class Slack:
     def __init__(self):
         self.client = WebClient(token=user_oauth_token)
 
-    def post_message(self, msg,  channel_id, thread_id):
+    def post_message(self, msg,  channel_id, thread_id=''):
         try:
             self.client.chat_postMessage(
                 channel=channel_id,
