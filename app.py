@@ -1,7 +1,7 @@
-
-from flask import Flask, request
+from flask import Flask, request, render_template
 from func.chatgpt import ChatGPT
 from func.slack import Slack
+from func.gitlab import Gitlab
 import json
 import pandas as pd
 
@@ -9,7 +9,9 @@ import pandas as pd
 app = Flask(__name__)
 
 summary = ChatGPT()
+search_engine = ChatGPT()
 slack = Slack()
+gitlab = Gitlab()
 
 
 @app.route("/", methods=['POST'])
@@ -39,6 +41,19 @@ def thread_summary():
     slack.post_message(result, channel_id, thread_id)
 
     return {}
+
+
+@app.route("/search")
+def search():
+    query = request.args.to_dict()
+    if 'text' in query:
+        question = query['text']
+    else:
+        question = 'No question.'
+
+    result = search_engine.get_simarity(question)
+
+    return render_template('qa.html', result=result)
 
 
 if __name__ == "__main__":
