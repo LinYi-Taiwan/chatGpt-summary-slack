@@ -3,6 +3,8 @@ numpy==1.24.1
 openai==0.27.2
 pandas==1.5.2
 slack-sdk==3.20.2
-python-dotenv==0.10.1
-
-
+# python-dotenv==0.10.1
+scikit-learn 
+scipy 
+matplotlib
+plotly
