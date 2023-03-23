@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request
 from func.chatgpt import ChatGPT
 from func.slack import Slack
 from func.gitlab import Gitlab
@@ -53,7 +53,7 @@ def search():
         question = 'No question.'
         result = 'No result.'
 
-    return render_template('qa.html', result=result)
+    return result
 
 
 if __name__ == "__main__":
