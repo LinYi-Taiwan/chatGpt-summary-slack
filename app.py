@@ -48,10 +48,10 @@ def search():
     query = request.args.to_dict()
     if 'text' in query:
         question = query['text']
+        result = search_engine.get_simarity(question)
     else:
         question = 'No question.'
-
-    result = search_engine.get_simarity(question)
+        result = 'No result.'
 
     return render_template('qa.html', result=result)
 
